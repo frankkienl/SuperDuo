@@ -1,4 +1,4 @@
-package it.jaschke.alexandria;
+package it.jaschke.alexandria_frankkienl;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,8 +8,8 @@ import android.test.AndroidTestCase;
 import java.util.Map;
 import java.util.Set;
 
-import it.jaschke.alexandria.data.AlexandriaContract;
-import it.jaschke.alexandria.data.DbHelper;
+import it.jaschke.alexandria_frankkienl.data.AlexandriaContract;
+import it.jaschke.alexandria_frankkienl.data.DbHelper;
 
 /**
  * Created by saj on 23/12/14.

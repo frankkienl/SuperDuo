@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="it.jaschke.alexandria" >
+    package="it.jaschke.alexandria_frankkienl" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="it.jaschke.alexandria_frankkienl.MainActivity"
             android:configChanges="orientation"
             android:label="@string/app_name" >
             <intent-filter>
@@ -24,21 +24,21 @@
         </activity>
         <activity
             android:label="@string/title_activity_settings"
-            android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity" >
+            android:name="it.jaschke.alexandria_frankkienl.SettingsActivity"
+            android:parentActivityName="it.jaschke.alexandria_frankkienl.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="it.jaschke.alexandria_frankkienl.MainActivity" />
         </activity>
 
 
 
         <provider
-            android:name=".data.BookProvider"
-            android:authorities="it.jaschke.alexandria"
+            android:name="it.jaschke.alexandria_frankkienl.data.BookProvider"
+            android:authorities="it.jaschke.alexandria_frankkienl"
             android:exported="false" />
         <service
-            android:name=".services.BookService"
+            android:name="it.jaschke.alexandria_frankkienl.services.BookService"
             android:exported="false" >
         </service>
     </application>

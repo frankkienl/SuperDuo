@@ -1,4 +1,4 @@
-package it.jaschke.alexandria.api;
+package it.jaschke.alexandria_frankkienl.api;
 
 /**
  * Created by saj on 25/01/15.

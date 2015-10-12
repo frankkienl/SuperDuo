@@ -1,15 +1,12 @@
-package it.jaschke.alexandria;
+package it.jaschke.alexandria_frankkienl;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.test.AndroidTestCase;
-import android.util.Log;
 
-import it.jaschke.alexandria.data.AlexandriaContract;
-import it.jaschke.alexandria.data.DbHelper;
+import it.jaschke.alexandria_frankkienl.data.AlexandriaContract;
 
 /**
  * Created by saj on 23/12/14.

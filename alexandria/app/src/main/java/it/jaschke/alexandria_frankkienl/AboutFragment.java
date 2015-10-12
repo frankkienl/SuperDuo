@@ -1,4 +1,4 @@
-package it.jaschke.alexandria;
+package it.jaschke.alexandria_frankkienl;
 
 import android.app.Activity;
 import android.os.Bundle;

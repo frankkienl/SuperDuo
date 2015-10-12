@@ -1,4 +1,4 @@
-package it.jaschke.alexandria;
+package it.jaschke.alexandria_frankkienl;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,9 +18,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import it.jaschke.alexandria.data.AlexandriaContract;
-import it.jaschke.alexandria.services.BookService;
-import it.jaschke.alexandria.services.DownloadImage;
+import it.jaschke.alexandria_frankkienl.data.AlexandriaContract;
+import it.jaschke.alexandria_frankkienl.services.BookService;
+import it.jaschke.alexandria_frankkienl.services.DownloadImage;
 
 
 public class BookDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
