@@ -37,7 +37,7 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
 
-
+    public static final int BARCODE_REQUEST_CODE = 2633; //'code' as T9
 
     public AddBookFragment(){
     }
@@ -103,6 +103,8 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
 
+                Intent i = new Intent(getActivity(),BarcodeScanActivity.class);
+                startActivityForResult(i, BARCODE_REQUEST_CODE);
             }
         });
 
@@ -130,6 +132,18 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         }
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == BARCODE_REQUEST_CODE){
+            if (requestCode == Activity.RESULT_OK){
+                //yay
+                String barcode_value = data.getStringExtra("barcode_value");
+                Toast.makeText(getActivity(),barcode_value,Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void restartLoader(){
