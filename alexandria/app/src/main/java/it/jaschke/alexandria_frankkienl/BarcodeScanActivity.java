@@ -1,9 +1,14 @@
 package it.jaschke.alexandria_frankkienl;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
@@ -25,12 +30,37 @@ import java.io.IOException;
  */
 public class BarcodeScanActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CAMERA_PERMISSION = 226; //Cam in T9
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barcodescan_layout);
 
-        scan();
+        //Check camera permission
+        int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            //Show explanation?
+            boolean shouldShow = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA);
+            if (shouldShow) {
+                Toast.makeText(this, "Camera permission is required for Barcode scanning", Toast.LENGTH_LONG).show();
+            }
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CAMERA_PERMISSION);
+        } else {
+            scan();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode){
+            case REQUEST_CAMERA_PERMISSION: {
+                
+            }
+        }
     }
 
     public void scan() {

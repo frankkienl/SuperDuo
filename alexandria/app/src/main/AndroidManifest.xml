@@ -32,6 +32,8 @@
         </activity>
 
 
+        <activity android:name=".BarcodeScanActivity"></activity>
+
 
         <provider
             android:name="it.jaschke.alexandria_frankkienl.data.BookProvider"
