@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.widget.CursorAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
@@ -79,10 +80,10 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                     return;
                 }
                 //Once we have an ISBN, start a book intent
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
+                Intent bookIntent = new Intent(getContext(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, ean);
                 bookIntent.setAction(BookService.FETCH_BOOK);
-                getActivity().startService(bookIntent);
+                getContext().startService(bookIntent);
                 AddBookFragment.this.restartLoader();
             }
         });
@@ -96,14 +97,14 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                 // Hint: Use a Try/Catch block to handle the Intent dispatch gracefully, if you
                 // are using an external app.
                 //when you're done, remove the toast below.
-                Context context = getActivity();
+                Context context = getContext();
                 CharSequence text = "This button should let you scan a book for its barcode!";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
 
-                Intent i = new Intent(getActivity(),BarcodeScanActivity.class);
+                Intent i = new Intent(getContext(),BarcodeScanActivity.class);
                 startActivityForResult(i, BARCODE_REQUEST_CODE);
             }
         });
@@ -118,10 +119,10 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         rootView.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
+                Intent bookIntent = new Intent(getContext(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, ean.getText().toString());
                 bookIntent.setAction(BookService.DELETE_BOOK);
-                getActivity().startService(bookIntent);
+                getContext().startService(bookIntent);
                 ean.setText("");
             }
         });
@@ -141,7 +142,7 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
             if (requestCode == Activity.RESULT_OK){
                 //yay
                 String barcode_value = data.getStringExtra("barcode_value");
-                Toast.makeText(getActivity(),barcode_value,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),barcode_value,Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -159,14 +160,16 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         if(eanStr.length()==10 && !eanStr.startsWith("978")){
             eanStr="978"+eanStr;
         }
-        return new CursorLoader(
-                getActivity(),
+
+        CursorLoader a = new CursorLoader(
+                this.getContext(),
                 AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(eanStr)),
                 null,
                 null,
                 null,
                 null
         );
+        return a;
     }
 
     @Override

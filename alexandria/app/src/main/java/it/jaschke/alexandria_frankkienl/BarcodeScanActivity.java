@@ -58,7 +58,11 @@ public class BarcodeScanActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode){
             case REQUEST_CAMERA_PERMISSION: {
-                
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show();
+                    //No permission go back.
+                    finish();
+                }
             }
         }
     }
